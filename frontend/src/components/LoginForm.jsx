@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function LoginForm() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -10,7 +10,7 @@ function LoginForm() {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/api/auth/login", {
-        username,
+        email,
         password,
       });
       setMessage(res.data);
@@ -23,10 +23,10 @@ function LoginForm() {
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
       <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         required
       />
       <br />
