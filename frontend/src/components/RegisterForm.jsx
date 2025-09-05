@@ -3,6 +3,7 @@ import axios from "axios";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");     
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -11,17 +12,19 @@ function RegisterForm() {
     try {
       const res = await axios.post("http://localhost:3000/api/auth/register", {
         username,
+        email,          
         password,
       });
-      setMessage(res.data);
+      setMessage(res.data.message);      
     } catch (err) {
-      setMessage(err.response?.data || "Error occurred");
+      setMessage(err.response?.data?.message || "Error occurred");
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
+
       <input
         type="text"
         placeholder="Username"
@@ -30,6 +33,16 @@ function RegisterForm() {
         required
       />
       <br />
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <br />
+
       <input
         type="password"
         placeholder="Password"
@@ -38,6 +51,7 @@ function RegisterForm() {
         required
       />
       <br />
+
       <button type="submit">Register</button>
       <p>{message}</p>
     </form>
