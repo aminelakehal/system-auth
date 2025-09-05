@@ -6,18 +6,23 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
-        email,
-        password,
-      });
-      setMessage(res.data);
-    } catch (err) {
-      setMessage(err.response?.data || "Error occurred");
-    }
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:3000/api/auth/login", {
+      email,
+      password,
+    });
+
+    localStorage.setItem("user", JSON.stringify({ username: res.data.username }));
+
+    setMessage("Login successful ");
+    navigate("/profile");    
+  } catch (err) {
+    setMessage(err.response?.data || "Error occurred");
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit}>
