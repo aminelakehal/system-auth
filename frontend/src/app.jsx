@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Auth System (Frontend)</h1>
+      <h1>System Auth</h1>
       <div>
         <button onClick={() => setPage("register")}>Register</button>
         <button onClick={() => setPage("login")}>Login</button>
