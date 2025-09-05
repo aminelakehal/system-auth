@@ -21,7 +21,7 @@ function Profile() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Hello {username} </h1>
+      <h1>Hello {username}</h1>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
